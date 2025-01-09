@@ -1,0 +1,76 @@
+import google.generativeai as genai
+import textwrap
+from IPython.display import Markdown, display
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import urllib3
+from dotenv import load_dotenv
+import os
+
+# Load environment variables
+load_dotenv()
+GEMINI_API_KEY = "AIzaSyAA9suH2gyJM8oNLtcmIoBSN3Q2LN9uWX0"
+# Configure the generative model
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+# Function to convert text to Markdown format
+def to_markdown(text):
+    text = text.replace('', '')
+    return Markdown(textwrap.indent(text, '>', predicate=lambda _: True))
+
+# Connect to the Gemini AI model
+model = genai.GenerativeModel("gemini-pro")
+
+# Generate content with the model
+response = model.generate_content('Your prompt here')  # Replace with your actual prompt
+display(to_markdown(response['choices'][0]['text']))
+
+# ServiceNow instance details
+instance_url = 'https://dev265564.service-now.com/'
+username = os.getenv("SERVICENOW_USERNAME")
+password = os.getenv("SERVICENOW_PASSWORD")
+
+# Disable SSL warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# API endpoint for querying incidents
+api_endpoint = f'{instance_url}/api/now/table/incident'
+
+# Function to analyze sentiment using a hypothetical sentiment analysis API
+def analyze_sentiment(text):
+    sentiment_api_url = 'https://api.your-sentiment-service.com/v1/sentiment'  # Replace with your actual API URL
+    headers = {
+        'Authorization': f'Bearer {os.getenv("GEMINI_API_KEY")}',  # Replace with your actual API key
+        'Content-Type': 'application/json'
+    }
+    try:
+        response = requests.post(sentiment_api_url, headers=headers, json={'text': text})
+        response.raise_for_status()  # Raise an error for bad responses
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f'Error analyzing sentiment: {e}')
+        return None
+
+# Make the GET request to ServiceNow REST API
+try:
+    response = requests.get(api_endpoint, auth=HTTPBasicAuth(username, password), verify=False)
+    response.raise_for_status()  # Raise an error for bad responses
+
+    # Parse the JSON response
+    data = response.json()
+    incidents = data.get('result', [])
+
+    # Iterate through incidents and analyze sentiment of short descriptions
+    for incident in incidents:
+        short_description = incident.get('short_description', '')
+        if short_description:
+            sentiment_result = analyze_sentiment(short_description)
+            if sentiment_result:
+                print(f"Incident: {incident['number']}")
+                print(f"Sentiment: {sentiment_result.get('sentiment')}\n")
+        else:
+            print(f"Incident {incident['number']} has no short description.")
+
+except requests.exceptions.RequestException as e:
+    print(f'Error: Unable to fetch data from ServiceNow. {e}')
