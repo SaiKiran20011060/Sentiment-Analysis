@@ -4,19 +4,19 @@ This project leverages Google Gemini AI and ServiceNow REST APIs to perform sent
 
 **🔍 Project Overview**
 
-  Designed an AI-powered sentiment analysis pipeline that evaluates incident short descriptions and returns a sentiment score (-1 to 1).
+ - Designed an AI-powered sentiment analysis pipeline that evaluates incident short descriptions and returns a sentiment score (-1 to 1).
 
--1 → Negative sentiment
+ - -1 → Negative sentiment
 
-0 → Neutral sentiment
+ - 0 → Neutral sentiment
 
-+1 → Positive sentiment
+ - +1 → Positive sentiment
 
-Integrated with ServiceNow APIs to fetch incident/request data securely.
+ - Integrated with ServiceNow APIs to fetch incident/request data securely.
 
-Utilized Google Gemini AI (Generative AI) for NLP-driven analysis of unstructured text.
+ - Utilized Google Gemini AI (Generative AI) for NLP-driven analysis of unstructured text.
 
-Output presented in structured JSON and tabular DataFrames for easy visualization.
+ - Output presented in structured JSON and tabular DataFrames for easy visualization.
 
 **🚀 Key Features**
 
