@@ -1,7 +1,9 @@
 **📝 Sentiment Analysis of ServiceNow Incidents**
+
 This project leverages Google Gemini AI and ServiceNow REST APIs to perform sentiment analysis on incident descriptions. The system helps IT service teams and support engineers understand the emotional tone of incidents (negative, neutral, or positive) and prioritize tickets more effectively.
 
 **🔍 Project Overview**
+
 Designed an AI-powered sentiment analysis pipeline that evaluates incident short descriptions and returns a sentiment score (-1 to 1).
 
 -1 → Negative sentiment
