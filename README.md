@@ -19,38 +19,38 @@ Output presented in structured JSON and tabular DataFrames for easy visualizatio
 **🚀 Key Features**
 **ServiceNow API Integration**
 
-   Connects to ServiceNow instance using REST API with authentication.
+- Connects to ServiceNow instance using REST API with authentication.
 
-Retrieves incident/request data automatically.
+ - Retrieves incident/request data automatically.
 
-Sentiment Analysis with Gemini AI
+**Sentiment Analysis with Gemini AI**
 
-Uses Google Gemini AI models (gemini-pro / gemini-1.5-flash) for NLP.
+ - Uses Google Gemini AI models (gemini-pro / gemini-1.5-flash) for NLP.
 
-Analyzes the short description of each incident/request.
+ - Analyzes the short description of each incident/request.
 
-Returns standardized sentiment scores.
+ - Returns standardized sentiment scores.
 
-Data Processing & Transformation
+**Data Processing & Transformation**
 
-Converts raw API results into structured Pandas DataFrames.
+ - Converts raw API results into structured Pandas DataFrames.
 
-Supports JSON exports for downstream usage.
+ - Supports JSON exports for downstream usage.
 
-Secure Credential Management
+**Secure Credential Management**
 
-Uses .env file to store API keys and ServiceNow credentials securely.
+ - Uses .env file to store API keys and ServiceNow credentials securely.
 
-Prevents exposure of sensitive information.
+ - Prevents exposure of sensitive information.
 
-Error Handling
+**Error Handling**
 
-Handles invalid responses, missing descriptions, and API failures gracefully.
+ - Handles invalid responses, missing descriptions, and API failures gracefully.
 
-Logs meaningful error messages for debugging.
+ - Logs meaningful error messages for debugging.
 
-Scalable & Extensible
+**Scalable & Extensible**
 
-Can be extended for requests, changes, or custom ServiceNow tables.
+ - Can be extended for requests, changes, or custom ServiceNow tables.
 
-Modular design to integrate with dashboards or BI tools.
+ - Modular design to integrate with dashboards or BI tools.
