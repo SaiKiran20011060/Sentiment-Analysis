@@ -17,9 +17,9 @@ Utilized Google Gemini AI (Generative AI) for NLP-driven analysis of unstructure
 Output presented in structured JSON and tabular DataFrames for easy visualization.
 
 **🚀 Key Features**
-ServiceNow API Integration
+**ServiceNow API Integration**
 
-Connects to ServiceNow instance using REST API with authentication.
+   Connects to ServiceNow instance using REST API with authentication.
 
 Retrieves incident/request data automatically.
 
